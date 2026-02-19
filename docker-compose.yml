@@ -1,0 +1,17 @@
+services:
+  webdna:
+    image: webdna:8.6.5
+    container_name: webdna-server-8-6-5
+    ports:
+      - "8080:80"          # Change if port 8080 is already in use
+    volumes:
+      - /opt/webdna/www:/var/www/html/sites   # Your .dna site files go here
+      - webdna-data:/usr/lib/cgi-bin/WebCatalogEngine/globals
+      - webdna-logs:/var/log/apache2
+    restart: unless-stopped
+
+volumes:
+  webdna-data:
+    name: webdna-server-8-6-5-data
+  webdna-logs:
+    name: webdna-server-8-6-5-logs
