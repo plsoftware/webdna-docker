@@ -1,4 +1,4 @@
-# WebDNA Docker Image
+# WebDNA Docker Image using Portainer Host
 
 Apache `mod_webdna` 8.6.5 on Ubuntu 24.04 LTS (Noble Numbat).
 
@@ -16,7 +16,7 @@ webdna-docker/
 
 ## Requirements
 
-- A machine running Docker (your Portainer host is fine)
+- A machine running Docker (This example has been configured to use Portainer host)
 - SSH access to that machine
 - Portainer installed and running
 
@@ -91,7 +91,7 @@ This is where your `.dna` site files will live on the host.
 Open your browser and go to:
 
 ```
-http://your-docker-host:8081/WebCatalog
+http://your-docker-host:8080/WebCatalog
 ```
 
 Login with `admin` / `admin`.
@@ -102,9 +102,9 @@ Login with `admin` / `admin`.
 
 | URL | Purpose |
 |---|---|
-| `http://your-host:8081/WebCatalog` | WebDNA admin interface |
-| `http://your-host:8081/WebCatalog/christophes_tearoom/` | Built-in demo store |
-| `http://your-host:8081/sites/` | Your own site files |
+| `http://your-host:8080/WebCatalog` | WebDNA admin interface |
+| `http://your-host:8080/WebCatalog/christophes_tearoom/` | Built-in demo store |
+| `http://your-host:8080/sites/` | Your own site files |
 
 ---
 
@@ -113,7 +113,7 @@ Login with `admin` / `admin`.
 Place your `.dna` files in `/opt/webdna/www` on the host. They will be served from:
 
 ```
-http://your-host:8081/sites/
+http://your-host:8080/sites/
 ```
 
 The `/var/www/html/WebCatalog` directory inside the container is left untouched — this is where the WebDNA admin interface and demo files live. Do not mount a volume directly to `/var/www/html` as this will hide the WebCatalog directory.
@@ -221,7 +221,7 @@ cd /usr/lib/cgi-bin/WebCatalogEngine && ./WebDNAMonitor &
 ```
 
 ### Port already in use
-If port 8081 is taken, change the port mapping in `docker-compose.yml`:
+If port 8080 is taken, change the port mapping in `docker-compose.yml`:
 ```yaml
 ports:
   - "8082:80"
